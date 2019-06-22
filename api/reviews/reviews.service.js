@@ -31,8 +31,18 @@ async function getCarModels(brandName) {
     const { _id } = await carBrand.findOne({ title: brandName }, null, {
       sort: { title: 1 }
     });
-    const models = await carModel.find({ brand: _id });
-    return models;
+    const models = await carModel.find(
+      { brand: _id },
+      { title: 1 },
+      { sort: { title: 1 } }
+    );
+    const result = models.map(model => {
+      return {
+        label: model.title,
+        value: model.title
+      };
+    });
+    return result;
   } catch (error) {
     throw error;
   }

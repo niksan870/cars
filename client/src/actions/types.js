@@ -19,3 +19,5 @@ export const ADDS_LEVEL_TWO = "ADDS_LEVEL_TWO";
 export const SHOW_CAR = "SHOW_CAR";
 export const GET_CARS = "GET_CARS";
 export const CARS_DATA_GET_BRANDS = "CARS_DATA_GET_BRANDS";
+export const CARS_DATA_GET_MODELS = "CARS_DATA_GET_MODELS";
+export const SEARCH_GET_CARS = "SEARCH_GET_CARS";

@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_ERRORS, CARS_DATA_GET_BRANDS, VEHICLES_LOADING } from "./types";
+import {
+  GET_ERRORS,
+  CARS_DATA_GET_BRANDS,
+  CARS_DATA_GET_MODELS,
+  VEHICLES_LOADING
+} from "./types";
 
 //Get all car Brands
 export const getBrands = () => dispatch => {
@@ -24,16 +29,12 @@ export const getModels = brand => dispatch => {
   axios
     .get("/reviews/car/brand/" + brand)
     .then(res => {
-      console.log(res);
-      return;
       dispatch({
-        type: CARS_DATA_GET_BRANDS,
+        type: CARS_DATA_GET_MODELS,
         payload: res.data
       });
     })
     .catch(err => {
-      console.log(err);
-      return;
       dispatch({
         type: GET_ERRORS,
         payload: err.data

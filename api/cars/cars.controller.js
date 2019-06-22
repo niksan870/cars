@@ -27,7 +27,8 @@ router.post(
 );
 router.get("/adds/step-two", authorize(), getCarsStep2);
 router.get("/add/step-two/:handle", authorize(), getCarStep2);
-router.post("/:handle", getCar);
+router.post("/car/:handle", getCar);
+router.post("/search", authorize(), searchCars);
 router.get("/", getCars);
 
 module.exports = router;
@@ -77,6 +78,7 @@ function getCarStep2(req, res, next) {
 
 function getCar(req, res, next) {
   let { handle } = req.params;
+  console.log(123);
   carsService
     .getCar(handle)
     .then(data => res.send(data))
@@ -86,6 +88,15 @@ function getCar(req, res, next) {
 function getCars(req, res, next) {
   carsService
     .getCars()
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => res.status(400).json(err));
+}
+
+function searchCars(req, res, next) {
+  carsService
+    .searchCars(req.body)
     .then(data => {
       res.send(data);
     })

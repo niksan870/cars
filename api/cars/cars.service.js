@@ -15,7 +15,8 @@ module.exports = {
   createCarStep2,
   getCarsStep2,
   getCar,
-  getCars
+  getCars,
+  searchCars
 };
 
 async function createCarStep1(reqBody, reqUser) {
@@ -147,9 +148,48 @@ async function getCars() {
     const cars = await Car.find(
       { step: { $in: [2] } },
       { handle: 1, made: 1, model: 1, modification: 1, images: 1, user: 1 }
-    )
-      .sort("-date")
-      .limit(5);
+    ).limit(5);
+
+    return cars;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function searchCars(carData) {
+  try {
+    let queryData = {};
+    const options = {
+      page: 1,
+      limit: 10
+    };
+
+    for (var key in carData) {
+      if (carData.hasOwnProperty(key)) {
+        if (key === "price") {
+          queryData[key] = { $lte: carData[key] };
+        } else {
+          queryData[key] = carData[key];
+        }
+      }
+    }
+    // queryData["images.0"] = 1;
+    // console.log(queryData);
+
+    const cars = await Car.find(
+      queryData,
+      {
+        handle: 1,
+        made: 1,
+        model: 1,
+        modification: 1,
+        images: { $slice: 1 },
+        user: 1,
+        currency: 1,
+        price: 1
+      },
+      options
+    );
 
     return cars;
   } catch (error) {

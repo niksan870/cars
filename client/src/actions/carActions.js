@@ -7,7 +7,8 @@ import {
   GET_LEVEL_ONE,
   ADDS_LEVEL_TWO,
   SHOW_CAR,
-  GET_CARS
+  GET_CARS,
+  SEARCH_GET_CARS
 } from "./types";
 
 // Register User
@@ -122,7 +123,7 @@ export const getCarAddsStepTwo = () => dispatch => {
 export const getCar = handle => dispatch => {
   dispatch(setVehiclesLoading());
   axios
-    .post("/cars/" + handle)
+    .post("/cars/car/" + handle)
     .then(res =>
       dispatch({
         type: SHOW_CAR,
@@ -136,6 +137,7 @@ export const getCar = handle => dispatch => {
       })
     );
 };
+
 export const getCars = () => dispatch => {
   dispatch(setVehiclesLoading());
   axios
@@ -152,6 +154,24 @@ export const getCars = () => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+export const searchGetCars = (carData, history) => dispatch => {
+  axios
+    .post("/cars/search", carData)
+    .then(res => {
+      history.push("/cars");
+      dispatch({
+        type: SEARCH_GET_CARS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SEARCH_GET_CARS,
+        payload: err.response.data
+      });
+    });
 };
 
 // Profile loading

@@ -23,6 +23,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import addCarStep2 from "./components/Car/addCar/addCarStep2";
 import addCarStep1 from "./components/Car/addCar/addCarStep1";
 import ShowCar from "./components/Car/viewCar/showCar";
+import viewCars from "./components/Car/viewCars/viewCars";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -51,6 +52,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/cars" component={viewCars} />
             <Route exact path="/profile/:handle" component={Profile} />
             <div className="conainter">
               <Route exact path="/signup" component={Register} />

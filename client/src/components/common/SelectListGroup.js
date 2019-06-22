@@ -5,26 +5,15 @@ import PropTypes from "prop-types";
 const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
   let selectOptions;
 
-  console.log(options);
-
-  if (name === "made" || name === "model") {
-    selectOptions = options.map(option => {
+  if (options) {
+    selectOptions = options.map((option, index) => {
       return (
-        <option key={option.key} value={option.props.value}>
-          {option.props.value}
-        </option>
-      );
-    });
-  } else {
-    selectOptions = options.map(option => {
-      return (
-        <option key={option.label} value={option.value}>
+        <option key={index} value={option.value}>
           {option.label}
         </option>
       );
     });
   }
-
   return (
     <div className="form-group">
       <select
@@ -48,8 +37,8 @@ SelectListGroup.propTypes = {
   value: PropTypes.string,
   info: PropTypes.string,
   error: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired
+  onChange: PropTypes.func,
+  options: PropTypes.array
 };
 
 export default SelectListGroup;

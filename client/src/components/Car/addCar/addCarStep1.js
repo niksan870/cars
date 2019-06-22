@@ -7,7 +7,7 @@ import InputGroup from "../../common/InputGroup";
 import SelectListGroup from "../../common/SelectListGroup";
 import AddictionalInfoItem from "./addCarStep1-components/AddictionalInfoItem";
 import stateObject from "./addCarStep1-components/stateObject";
-import options from "./addCarStep1-components/options";
+import options from "../../common/options";
 import CheckboxGroup from "../../common/CheckboxGroup";
 import { addCarStep1 } from "../../../actions/carActions";
 

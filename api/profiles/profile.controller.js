@@ -38,7 +38,6 @@ function deleteAccount(req, res, next) {
     });
 }
 function getProfileByHandle(req, res, next) {
-  console.log(123123);
   profileService
     .getProfileByHandle(req.params)
     .then(profile => res.send(profile))

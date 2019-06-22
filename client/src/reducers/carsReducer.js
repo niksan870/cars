@@ -1,7 +1,5 @@
 import {
-  GET_ERRORS,
-  SET_BRANDS,
-  SET_CURRENT_USER,
+  SEARCH_GET_CARS,
   ADDS_LEVEL_ONE,
   VEHICLES_LOADING,
   GET_LEVEL_ONE,
@@ -51,6 +49,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         showCars: action.payload,
+        loading: false
+      };
+    case SEARCH_GET_CARS:
+      return {
+        ...state,
+        searchShowCars: action.payload,
         loading: false
       };
     default:

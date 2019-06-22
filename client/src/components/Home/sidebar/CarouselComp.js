@@ -58,6 +58,7 @@ class CarouselComp extends Component {
 
     return (
       <div className="col-lg-8">
+        <h2>Най-скорошни обяви</h2>
         <Carousel>{imagesArr}</Carousel>
       </div>
     );
